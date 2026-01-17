@@ -1,6 +1,7 @@
 {
   "name": "app",
   "version": "0.1.0",
+  "homepage": "https://alartist40.github.io/Pathfinder-The-Pioneer-Trail",
   "private": true,
   "dependencies": {
     "phaser": "^3.90.0",
@@ -12,7 +13,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -33,6 +36,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
+    "gh-pages": "^6.3.0",
     "jest-canvas-mock": "^2.5.2",
     "phaser3spectorjs": "^0.0.8"
   }
