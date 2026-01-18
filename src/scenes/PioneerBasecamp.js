@@ -15,6 +15,9 @@ export default class PioneerBasecamp extends Phaser.Scene {
     this.interactionKey = null;
     this.textBox = null;
     this.text = null;
+    // ⚡ Bolt: Cache NPC tile position to avoid recalculating in the update loop.
+    this.npcTileX = 0;
+    this.npcTileY = 0;
   }
 
   addBuilding(x, y, width, height, color, text, textColor = '#fff') {
@@ -59,9 +62,10 @@ export default class PioneerBasecamp extends Phaser.Scene {
     const npcStartX = 15 * TILE_SIZE + TILE_SIZE / 2;
     const npcStartY = 9 * TILE_SIZE + TILE_SIZE / 2;
     this.npc = this.add.rectangle(npcStartX, npcStartY, TILE_SIZE, TILE_SIZE, 0x0000ff); // Blue square for NPC
-    const npcTileX = Math.floor(npcStartX / TILE_SIZE);
-    const npcTileY = Math.floor(npcStartY / TILE_SIZE);
-    this.grid[npcTileY][npcTileX] = 1; // Mark NPC tile as collidable
+    // ⚡ Bolt: Calculate and cache the NPC's tile position once, as it's static.
+    this.npcTileX = Math.floor(npcStartX / TILE_SIZE);
+    this.npcTileY = Math.floor(npcStartY / TILE_SIZE);
+    this.grid[this.npcTileY][this.npcTileX] = 1; // Mark NPC tile as collidable
 
     // Input setup
     this.cursors = this.input.keyboard.createCursorKeys();
@@ -88,10 +92,9 @@ export default class PioneerBasecamp extends Phaser.Scene {
       } else {
         const playerTileX = Math.floor(this.player.x / TILE_SIZE);
         const playerTileY = Math.floor(this.player.y / TILE_SIZE);
-        const npcTileX = Math.floor(this.npc.x / TILE_SIZE);
-        const npcTileY = Math.floor(this.npc.y / TILE_SIZE);
 
-        const distance = Math.abs(playerTileX - npcTileX) + Math.abs(playerTileY - npcTileY);
+        // ⚡ Bolt: Use the cached NPC tile position to avoid redundant calculations.
+        const distance = Math.abs(playerTileX - this.npcTileX) + Math.abs(playerTileY - this.npcTileY);
         if (distance === 1) {
           this.text.setText('Hello, Pathfinder!');
           this.textBox.setVisible(true);
