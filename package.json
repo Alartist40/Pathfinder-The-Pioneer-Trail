@@ -41,5 +41,9 @@
     "gh-pages": "^6.3.0",
     "jest-canvas-mock": "^2.5.2",
     "phaser3spectorjs": "^0.0.8"
+  },
+  "overrides": {
+    "nth-check": "2.1.1",
+    "postcss": "8.4.38"
   }
 }
