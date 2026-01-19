@@ -16,15 +16,15 @@ export default class CharacterSelectScene extends Phaser.Scene {
             fill: '#ffffff'
         }).setOrigin(0.5);
 
-        // Option 1: Alex (Green/Boy)
+        // Option 1: Boy (Green)
         const char1 = this.add.rectangle(width / 3, height / 2, 100, 100, 0x00ff00)
             .setInteractive({ useHandCursor: true });
-        this.add.text(width / 3, height / 2 + 70, 'Alex', { fontSize: '24px' }).setOrigin(0.5);
+        this.add.text(width / 3, height / 2 + 70, 'Boy', { fontSize: '24px' }).setOrigin(0.5);
 
-        // Option 2: Sam (Orange/Girl)
+        // Option 2: Girl (Orange)
         const char2 = this.add.rectangle(width * 2 / 3, height / 2, 100, 100, 0xffa500)
             .setInteractive({ useHandCursor: true });
-        this.add.text(width * 2 / 3, height / 2 + 70, 'Sam', { fontSize: '24px' }).setOrigin(0.5);
+        this.add.text(width * 2 / 3, height / 2 + 70, 'Girl', { fontSize: '24px' }).setOrigin(0.5);
 
         // Selection Logic
         const selectCharacter = (name, color) => {
@@ -32,7 +32,7 @@ export default class CharacterSelectScene extends Phaser.Scene {
 
             // Visual feedback
             this.tweens.add({
-                targets: name === 'Alex' ? char1 : char2,
+                targets: name === 'Boy' ? char1 : char2,
                 scale: 1.2,
                 duration: 100,
                 yoyo: true,
@@ -42,7 +42,7 @@ export default class CharacterSelectScene extends Phaser.Scene {
             });
         };
 
-        char1.on('pointerdown', () => selectCharacter('Alex', 0x00ff00));
-        char2.on('pointerdown', () => selectCharacter('Sam', 0xffa500));
+        char1.on('pointerdown', () => selectCharacter('Boy', 0x00ff00));
+        char2.on('pointerdown', () => selectCharacter('Girl', 0xffa500));
     }
 }
