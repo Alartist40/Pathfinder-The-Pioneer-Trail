@@ -5,6 +5,7 @@ import TitleScene from '../scenes/TitleScene';
 import CharacterSelectScene from '../scenes/CharacterSelectScene';
 import RegistrationScene from '../scenes/RegistrationScene';
 import PioneerBasecamp from '../scenes/PioneerBasecamp';
+import InteriorScene from '../scenes/InteriorScene';
 import UIScene from '../scenes/UIScene';
 
 const Game = () => {
@@ -22,6 +23,7 @@ const Game = () => {
         CharacterSelectScene,
         RegistrationScene,
         PioneerBasecamp,
+        InteriorScene,
         UIScene
       ],
       physics: {

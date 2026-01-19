@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### `0.3.0` - Core Gameplay Overhaul - 2026-01-20
+
+#### Added
+- **Physics & Collision:** The game now uses Phaser's Arcade physics engine. Player, NPCs, and map elements have physical bodies, preventing overlapping.
+- **Key-based Interaction System:** Implemented a new interaction system based on the 'E' key. A prompt appears when the player is near an interactable object.
+- **Building Interiors:** Buildings now have functional doors that transport the player to and from a new, unique interior scene.
+- **Interactable NPCs:** The camp is now populated with NPCs who share Bible verses when interacted with.
+- **Organic Map Design:** The main camp map has been completely redesigned with a more natural layout, including winding paths, a stream, and bridges.
+
+#### Changed
+- **Player Movement:** Player movement is now velocity-based, integrated with the new physics engine for smoother and more robust control.
+- **Camera System:** The camera now follows the player and is constrained to the world bounds, preventing the player from leaving the screen.
+- **UI Flow:**
+  - The character selection screen now offers "Boy" and "Girl" options.
+  - The registration scene now includes "Skip to Camp" and "Dev Level Select" buttons for improved testing and faster onboarding.
+
 ### `0.2.0` - Game Expansion & Core Loop - 2026-01-19
 
 #### Added
