@@ -28,23 +28,17 @@ To test changes before they go live, you can run a local development server on y
     cd Pathfinder-The-Pioneer-Trail
     ```
 
-3.  **Install Dependencies:**
-    This command installs all the necessary packages for the project, including React and Phaser.
+3.  **Setup and Run the Project:**
+    This single command installs all dependencies, runs the test suite, and starts the development server.
     ```bash
-    npm install
-    ```
-
-4.  **Start the Development Server:**
-    This command starts a local server (usually on `http://localhost:3000`) that will automatically reload as you make changes to the code.
-    ```bash
-    npm start
+    npm run setup
     ```
 
 ### Deployment (Publishing the Game to the Live Website)
 
-The live version of the game is hosted using GitHub Pages. The following command automates the process of building the project and publishing it.
+The live version of the game is hosted using GitHub Pages. The following command automates the process of building the project and publishing it to a clean `gh-pages-production` branch.
 
-**Important:** This is the only command you need to run to make your local changes appear on the live website.
+**Important:** This is the only command you need to run to make your local changes appear on the live website. After running this command, you will need to configure your GitHub repository to deploy from the `gh-pages-production` branch in the **Settings > Pages** section.
 
 1.  **Ensure you have installed all dependencies:**
     ```bash
@@ -53,7 +47,7 @@ The live version of the game is hosted using GitHub Pages. The following command
 
 2.  **Run the Deploy Command:**
     ```bash
-    npm run deploy
+    npm run deploy:fresh
     ```
 
-This command will create a production build of the game and push it to the `gh-pages` branch on your repository. GitHub Pages will then automatically update the live website. Please allow a few minutes for the changes to become visible.
+This command will create a production build of the game and push it to the `gh-pages-production` branch on your repository. GitHub Pages will then automatically update the live website. Please allow a few minutes for the changes to become visible.
