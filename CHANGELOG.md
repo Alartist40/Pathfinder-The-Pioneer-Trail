@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### `0.2.0` - Game Expansion & Core Loop - 2026-01-19
+
+#### Added
+- **Global Scene Management:** Implemented a full game flow including `BootScene`, `TitleScene`, `CharacterSelectScene`, and `RegistrationScene`.
+- **Wandering Sage NPC:** Added AI-driven NPCs that roam the map and share verses when tapped.
+- **Interactive Resources:** Added "Fallen Branches" that can be collected via tap interaction.
+- **UI System:** Created a dedicated `UIScene` for inventory overlay and toast notifications/dialogs.
+- **Map Expansion:** Expanded `PioneerBasecamp` to a 40x30 grid with distinct zones (River, Cabin, Plaza).
+
+#### Changed
+- **Control Scheme:** Standardized on "Click/Tap" interaction for mobile compatibility, while retaining WASD for desktop movement.
+- **Visuals:** Updated placeholder graphics to represent different character choices (Alex/Sam) and building types.
+
+### `0.1.1` - Fixes & Improvements - 2026-01-19
+
+#### Fixed
+- **Critical Startup Bug:** Fixed a "White Screen of Death" issue caused by a compatibility mismatch between React 19 and the legacy `ReactDOM.render` API. Upgraded the entry point to use `ReactDOM.createRoot`.
+
+#### Improved
+- **UI/UX:** Added a decorative border and shadow to the game container to separate it from the background.
+- **Code Quality:** Verified clean console output and React StrictMode compatibility.
+
 ### `0.1.0` - Initial Prototype - 2026-01-17
 
 #### Added

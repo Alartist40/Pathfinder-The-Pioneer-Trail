@@ -33,6 +33,18 @@ To test changes before they go live, you can run a local development server on y
     ```bash
     npm run setup
     ```
+    **What to expect:**
+    1.  Dependencies will install.
+    2.  Tests will run (and pass).
+    3.  The browser will automatically open to the game.
+
+4.  **Verifying the Fix (Troubleshooting):**
+    If you previously saw a **plain blank white screen**, this update has fixed the React 19 compatibility issue causing it.
+    *   **Success:** You should see the game title and the game world (green background with buildings).
+    *   **Still Blank?**
+        *   Open Developer Tools (F12 or Right Click > Inspect > Console).
+        *   Check for red errors.
+        *   Ensure you are not running an old cached version (try `Ctrl+F5` or `Cmd+Shift+R`).
 
 ### Deployment (Publishing the Game to the Live Website)
 
