@@ -15,6 +15,7 @@ export default class PioneerBasecamp extends Phaser.Scene {
     this.interactionKey = null;
     this.textBox = null;
     this.text = null;
+    this.interactionText = null;
   }
 
   addBuilding(x, y, width, height, color, text, textColor = '#fff') {
@@ -71,6 +72,9 @@ export default class PioneerBasecamp extends Phaser.Scene {
     // Text box setup
     this.textBox = this.add.rectangle(400, 550, 750, 80, 0x000000, 0.8).setStrokeStyle(2, 0xffffff).setVisible(false);
     this.text = this.add.text(50, 525, '', { fontSize: '20px', fill: '#fff', wordWrap: { width: 700 } }).setVisible(false);
+
+    // Interaction text setup
+    this.interactionText = this.add.text(this.npc.x, this.npc.y - TILE_SIZE, 'Talk', { fontSize: '16px', fill: '#fff' }).setOrigin(0.5).setVisible(false);
   }
 
   isTileWalkable(x, y) {
@@ -80,6 +84,19 @@ export default class PioneerBasecamp extends Phaser.Scene {
   }
 
   update() {
+    // Show/hide interaction text
+    const playerTileX = Math.floor(this.player.x / TILE_SIZE);
+    const playerTileY = Math.floor(this.player.y / TILE_SIZE);
+    const npcTileX = Math.floor(this.npc.x / TILE_SIZE);
+    const npcTileY = Math.floor(this.npc.y / TILE_SIZE);
+    const distance = Math.abs(playerTileX - npcTileX) + Math.abs(playerTileY - npcTileY);
+
+    if (distance === 1 && !this.textBox.visible) {
+      this.interactionText.setVisible(true);
+    } else {
+      this.interactionText.setVisible(false);
+    }
+
     // Handle interaction
     if (Phaser.Input.Keyboard.JustDown(this.interactionKey)) {
       if (this.textBox.visible) {
