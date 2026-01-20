@@ -34,16 +34,26 @@ export default class UIScene extends Phaser.Scene {
     }
 
     createDialogBox(width, height) {
-        this.dialogContainer = this.add.container(width / 2, height - 150);
-        this.dialogBg = this.add.rectangle(0, 0, 600, 100, 0x000000, 0.9).setStrokeStyle(2, 0xffffff);
+        // Dialogue box styled according to the game design document
+        this.dialogContainer = this.add.container(width / 2, height - 100);
+
+        // Background: Light parchment with 90% opacity
+        const dialogBg = this.add.rectangle(0, 0, 700, 120, 0xf5f5dc, 0.9);
+
+        // Border: Dark brown
+        dialogBg.setStrokeStyle(4, 0x5c4033);
+
+        // Text: Deep charcoal
         this.dialogText = this.add.text(0, 0, '', {
-            fontSize: '20px',
-            fill: '#ffffff',
-            wordWrap: { width: 580 },
-            align: 'center'
+            fontSize: '22px',
+            fill: '#2c2c2c', // Deep charcoal
+            wordWrap: { width: 680 },
+            align: 'left',
+            lineSpacing: 8,
+            padding: { top: 10, left: 10, right: 10, bottom: 10 }
         }).setOrigin(0.5);
 
-        this.dialogContainer.add([this.dialogBg, this.dialogText]);
+        this.dialogContainer.add([dialogBg, this.dialogText]);
         this.dialogContainer.setVisible(false);
     }
 

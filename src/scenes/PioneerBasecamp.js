@@ -81,8 +81,18 @@ export default class PioneerBasecamp extends Phaser.Scene {
 
         // --- Input and Interaction ---
         this.cursors = this.input.keyboard.createCursorKeys();
-        this.keys = this.input.keyboard.addKeys('W,A,S,D,E');
+        this.keys = this.input.keyboard.addKeys('W,A,S,D,E,H');
         this.interactionManager = new InteractionManager(this, this.player, this.interactables);
+
+        // --- Handbook Toggle ---
+        this.keys.H.on('down', () => {
+            const handbook = this.scene.get('HandbookScene');
+            if (handbook.scene.isSleeping()) {
+                this.scene.wake('HandbookScene');
+            } else {
+                this.scene.sleep('HandbookScene');
+            }
+        });
     }
 
     createMap() {
@@ -117,14 +127,21 @@ export default class PioneerBasecamp extends Phaser.Scene {
     }
 
     createNPCs() {
-        // Create an NPC and add it to the obstacles and interactables groups
-        const npc1 = new NPC(this, 10 * TILE_SIZE, 17 * TILE_SIZE, 'Ranger Rob', 'The heavens declare the glory of God. (Psalm 19:1)');
+        // Ranger Rob
+        const npc1 = new NPC(this, 10 * TILE_SIZE, 17 * TILE_SIZE, 'boy_placeholder', 'Ranger Rob', 'The heavens declare the glory of God. (Psalm 19:1)');
         this.obstacles.add(npc1);
         this.interactables.add(npc1);
 
-        const npc2 = new NPC(this, 25 * TILE_SIZE, 21 * TILE_SIZE, 'Pastor Pete', 'For God so loved the world... (John 3:16)');
+        // Pastor Pete
+        const npc2 = new NPC(this, 25 * TILE_SIZE, 21 * TILE_SIZE, 'boy_placeholder', 'Pastor Pete', 'For God so loved the world... (John 3:16)');
         this.obstacles.add(npc2);
         this.interactables.add(npc2);
+
+        // Samuel
+        const verse = "Trust in the Lord with all your heart. – Proverbs 3:5";
+        const samuel = new NPC(this, 15 * TILE_SIZE, 15 * TILE_SIZE, 'boy_placeholder', 'Samuel', verse);
+        this.obstacles.add(samuel);
+        this.interactables.add(samuel);
     }
 
     createBranches() {

@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import Phaser from 'phaser';
 import BootScene from '../scenes/BootScene';
-import TitleScene from '../scenes/TitleScene';
+import IntroScene from '../scenes/IntroScene';
 import CharacterSelectScene from '../scenes/CharacterSelectScene';
 import RegistrationScene from '../scenes/RegistrationScene';
 import PioneerBasecamp from '../scenes/PioneerBasecamp';
 import InteriorScene from '../scenes/InteriorScene';
 import UIScene from '../scenes/UIScene';
+import HandbookScene from '../scenes/HandbookScene';
 
 const Game = () => {
   const gameContainer = useRef(null);
@@ -19,12 +20,13 @@ const Game = () => {
       parent: gameContainer.current,
       scene: [
         BootScene,
-        TitleScene,
+        IntroScene,
         CharacterSelectScene,
         RegistrationScene,
         PioneerBasecamp,
         InteriorScene,
-        UIScene
+        UIScene,
+        HandbookScene
       ],
       physics: {
         default: 'arcade',
