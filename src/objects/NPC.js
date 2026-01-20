@@ -12,13 +12,12 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite {
    * @param {number} x The x-coordinate of the NPC.
    * @param {number} y The y-coordinate of the NPC.
    * @param {string} texture The key of the texture to use for this NPC.
-   * @param {string} name The name of the NPC, to be displayed.
-   * @param {string} verse The Bible verse the NPC will share.
+   * @param {object} npcData The data object for the NPC, containing name, colors, and dialogue.
    */
-  constructor(scene, x, y, texture, name, verse) {
+  constructor(scene, x, y, texture, npcData) {
     super(scene, x, y, texture);
-    this.name = name;
-    this.verse = verse;
+    this.npcData = npcData;
+    this.name = npcData.name; // Keep name for easy access, e.g., for interaction prompts
 
     // Add this object to the scene and the physics engine
     scene.add.existing(this);
@@ -38,18 +37,20 @@ export default class NPC extends Phaser.Physics.Arcade.Sprite {
    * It displays the NPC's dialog and adds the verse to the player's collection.
    */
   onInteraction() {
-    // Show dialogue in the UI
-    this.scene.events.emit('showDialog', `${this.name}:\n"${this.verse}"`);
+    // Show dialogue in the UI using the new structured data
+    this.scene.events.emit('showDialog', this.npcData);
+
+    // Format the verse for storage in the handbook
+    const verseToAdd = `"${this.npcData.dialogue.verse}" – ${this.npcData.dialogue.ref}`;
 
     // Add the verse to the global registry if it's not already there
     const collectedVerses = this.scene.registry.get('collectedVerses');
-    if (!collectedVerses.includes(this.verse)) {
-      collectedVerses.push(this.verse);
-      this.scene.registry.set('collectedVerses', collectedVerses);
+    if (!collectedVerses.includes(verseToAdd)) {
+        collectedVerses.push(verseToAdd);
+        this.scene.registry.set('collectedVerses', collectedVerses);
 
-      // Optionally, provide feedback that a new verse has been collected
-      // This could be a sound effect or a small notification in the UI scene.
-      this.scene.events.emit('showToast', 'New Verse Collected!');
+        // This could be a sound effect or a small notification in the UI scene.
+        this.scene.events.emit('showToast', 'New Verse Collected!');
     }
   }
 }

@@ -4,6 +4,7 @@
   "homepage": "https://alartist40.github.io/Pathfinder-The-Pioneer-Trail",
   "private": true,
   "dependencies": {
+    "@fontsource/press-start-2p": "^5.2.7",
     "phaser": "^3.90.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",

@@ -127,19 +127,18 @@ export default class PioneerBasecamp extends Phaser.Scene {
     }
 
     createNPCs() {
-        // Ranger Rob
-        const npc1 = new NPC(this, 10 * TILE_SIZE, 17 * TILE_SIZE, 'boy_placeholder', 'Ranger Rob', 'The heavens declare the glory of God. (Psalm 19:1)');
-        this.obstacles.add(npc1);
-        this.interactables.add(npc1);
-
-        // Pastor Pete
-        const npc2 = new NPC(this, 25 * TILE_SIZE, 21 * TILE_SIZE, 'boy_placeholder', 'Pastor Pete', 'For God so loved the world... (John 3:16)');
-        this.obstacles.add(npc2);
-        this.interactables.add(npc2);
-
-        // Samuel
-        const verse = "Trust in the Lord with all your heart. – Proverbs 3:5";
-        const samuel = new NPC(this, 15 * TILE_SIZE, 15 * TILE_SIZE, 'boy_placeholder', 'Samuel', verse);
+        // Samuel - GDD Aligned
+        const samuelData = {
+            name: 'Samuel',
+            primaryColor: '#6b7d2a',
+            accentColor: '#d76b2a',
+            dialogue: {
+                greeting: "Morning, Pathfinder! Here's a verse that's guided me for years...",
+                verse: "Trust in the Lord with all your heart.",
+                ref: "Proverbs 3:5"
+            }
+        };
+        const samuel = new NPC(this, 15 * TILE_SIZE, 15 * TILE_SIZE, 'boy_placeholder', samuelData);
         this.obstacles.add(samuel);
         this.interactables.add(samuel);
     }
