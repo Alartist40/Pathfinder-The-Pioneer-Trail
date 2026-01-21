@@ -34,17 +34,25 @@ export default class UIScene extends Phaser.Scene {
     }
 
     createDialogBox(width, height) {
-        this.dialogContainer = this.add.container(width / 2, height - 150);
-        this.dialogBg = this.add.rectangle(0, 0, 600, 100, 0x000000, 0.9).setStrokeStyle(2, 0xffffff);
+        // Position the dialogue box at the bottom center of the screen
+        const boxHeight = height * 0.25; // 25% of screen height
+        const boxWidth = width * 0.8; // 80% of screen width
+        this.dialogContainer = this.add.container(width / 2, height - (boxHeight / 2) - 20);
+
+        // Parchment-style background with a dark brown border
+        this.dialogBg = this.add.rectangle(0, 0, boxWidth, boxHeight, 0xf5f5dc).setStrokeStyle(3, 0x5c4033);
+
+        // Smaller font and darker text color
         this.dialogText = this.add.text(0, 0, '', {
-            fontSize: '20px',
-            fill: '#ffffff',
-            wordWrap: { width: 580 },
-            align: 'center'
+            fontSize: '16px',
+            fill: '#3d251e',
+            wordWrap: { width: boxWidth - 20 },
+            align: 'left'
         }).setOrigin(0.5);
 
         this.dialogContainer.add([this.dialogBg, this.dialogText]);
         this.dialogContainer.setVisible(false);
+        this.dialogContainer.setDepth(10); // Ensure it's on top
     }
 
     updateInventory(inventory) {
