@@ -34,11 +34,15 @@ const Game = () => {
       },
     };
 
-    const game = new Phaser.Game(config);
-
-    return () => {
-      game.destroy(true);
-    };
+    try {
+      const game = new Phaser.Game(config);
+      window.phaserGame = game; // Expose for verification scripts
+      return () => {
+        game.destroy(true);
+      };
+    } catch (e) {
+      console.error('Failed to create Phaser game:', e);
+    }
   }, []);
 
   return <div ref={gameContainer} className="game-container" />;
