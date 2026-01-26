@@ -7,6 +7,10 @@ export default class BootScene extends Phaser.Scene {
 
     preload() {
         // Preload assets here
+        this.load.image('boy_placeholder', 'assets/images/boy_placeholder.png');
+        this.load.image('girl_placeholder', 'assets/images/girl_placeholder.png');
+        this.load.image('bus', 'assets/images/bus.png');
+
         // For now, we are using shapes, but we can load fonts or placeholder logic
         this.initialText = this.add.text(400, 300, 'Packing the bus...', {
             fontSize: '24px',
@@ -20,10 +24,11 @@ export default class BootScene extends Phaser.Scene {
         this.registry.set('rank', null);
         this.registry.set('character', null);
         this.registry.set('inventory', []);
+        this.registry.set('collectedVerses', []);
 
-        // Transition to Title Scene
+        // Transition to Intro Scene
         this.time.delayedCall(1000, () => {
-            this.scene.start('TitleScene');
+            this.scene.start('IntroScene');
         });
     }
 }
